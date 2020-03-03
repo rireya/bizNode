@@ -1,0 +1,13 @@
+{
+	"header": {
+		"result": false,
+        "error_code": "",
+        "error_text": "테스트서버에 해당 전문의 JSON 파일이 없습니다.",
+        "info_text": "",
+        "message_version": "",
+        "login_session_id": "",
+        "trcode": ""
+	},
+	"body": {
+	}
+}
