@@ -15,7 +15,7 @@ const port = ((val) => {
     else {
         return false;
     }
-})("3000");
+})(require("../biznode.config").port);
 
 app.set("port", port);
 
@@ -55,5 +55,6 @@ server.on("listening", () => {
         ? "Pipe " + addr
         : "Port " + addr.port;
 
-    debug(`Listening on ${bind}`);
+    debug(`Listening on ${bind} Server`);
+    debug("===============================================================");
 });

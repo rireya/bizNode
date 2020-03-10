@@ -1,15 +1,14 @@
 const express = require("express");
 const path = require("path");
-const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const debug = require("debug")("bizNode:www");
 
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -22,15 +21,21 @@ const users = require("./routes/users");
 app.get("/", routes);
 app.get("/users", users.index);
 app.get("/users/:name", users.show);
-
 /***********/
 
+
 /** bizNode Server Setting */
-const configList = require("./biznode.config").configList;
+const config = require("./biznode.config");
 const bizmob3 = require("./routes/bizMob3");
+const util = require("./routes/util");
+
+const port = config.port;
+const configList = config.configList;
 
 configList.map((config) => {
     bizmob3.setting(app, config);
+
+    debug(`Setting on ${util.getLocalIP()}:${port}/${config.context}`);
 });
 /***************************/
 
