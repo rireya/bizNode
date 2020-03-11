@@ -14,15 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-/** Routes */
+/** Views Routes */
 const routes = require("./routes/index");
-const users = require("./routes/users");
 
 app.get("/", routes);
-app.get("/users", users.index);
-app.get("/users/:name", users.show);
 /***********/
-
 
 /** bizNode Server Setting */
 const config = require("./biznode.config");

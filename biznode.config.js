@@ -2,7 +2,7 @@ module.exports = {
     /**
      * Open할 포트 번호
      */
-    "port": 3000,
+    "port": 4000,
 
     /**
      * Local Web 서버 Open 정보

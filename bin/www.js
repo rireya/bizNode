@@ -34,12 +34,12 @@ server.on("error", (error) => {
 
     switch (error.code) {
         case "EACCES": {
-            console.error(`${bind} requires elevated privileges`);
+            debug(`EACCES ERROR: ${bind} requires elevated privileges`);
             process.exit(1);
             break;
         }
         case "EADDRINUSE": {
-            console.error(`${bind} is already in use`);
+            debug(`EADDRINUSE ERROR: ${bind} is already in use`);
             process.exit(1);
             break;
         }
