@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const favicon = require("serve-favicon");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const debug = require("debug")("bizNode:www");
@@ -9,6 +10,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+app.use(favicon(__dirname + "/public/favicon.ico"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

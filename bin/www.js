@@ -2,7 +2,6 @@ const app = require("../app");
 const debug = require("debug")("bizNode:www");
 const http = require("http");
 
-// TODO: Port 번호를 설정한 config 파일에서 가져오도록 수정
 const port = ((val) => {
     const port = parseInt(val, 10);
     
