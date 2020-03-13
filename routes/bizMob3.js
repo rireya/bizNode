@@ -12,6 +12,7 @@ exports.setting = (app, { context, dirname, option }) => {
     const emulatorPath = path.join(contentPath, option.emulator || "webemulator/html/emulator.html");
     const contextPath = `/${context}`;
 
+    // Log 미들웨어
     app.use(contextPath, (req, res, next) => {
         const reqPath = req.path;
         const type = reqPath.split(".").pop();
