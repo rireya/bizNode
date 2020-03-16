@@ -15,12 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-/** Views Routes */
-const routes = require("./routes/index");
-
-app.get("/", routes);
-/***********/
-
 /** bizNode Server Setting */
 const config = require("./biznode.config");
 const bizmob3 = require("./routes/bizMob3");
