@@ -8,7 +8,6 @@ const debug = require("debug")("bizNode:www");
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
 
 app.use(favicon(__dirname + "/public/favicon.ico"));
 app.use(bodyParser.json());
@@ -45,11 +44,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res) => {
-    res.status(err.status || 500);
-    res.render("error", {
-        message: err.message,
-        error: err
-    });
+    res.status(err.status || 500).send(err.message);
 });
 
 module.exports = app;
