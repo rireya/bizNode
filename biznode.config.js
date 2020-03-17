@@ -2,7 +2,7 @@ module.exports = {
     /**
      * Open할 포트 번호
      */
-    "port": 4000,
+    "port": 3000,
 
     /**
      * Local Web 서버 Open 정보
@@ -15,8 +15,8 @@ module.exports = {
             /**
              * 전문요청 서버 정보
              */
-            "server": "https://mtdev.lottechilsung.co.kr:443/mt",
-            
+            "server": "",
+
             /**
              * 기타 설정 정보
              * emulator.html 경로가 기본값과 다를경우 셋팅 (경로는 /WebContent 이후 경로작성)
