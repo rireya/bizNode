@@ -137,7 +137,31 @@ exports.setting = (app, { context, dirname, option }) => {
                     });
             }
             else {
-                const jsonFile = util.getErrorJson(trcode, "설정된 전문요청 서버 정보가 없습니다.");
+                let jsonFile = null;
+
+                switch (trcode) {
+                    case "ZZ0007.json": {
+                        jsonFile = {
+                            "header": {
+                                "result": true,
+                                "error_code": "",
+                                "error_text": "",
+                                "info_text": "",
+                                "message_version": "",
+                                "login_session_id": "",
+                                "trcode": trcode.replace(".json", "")
+                            },
+                            "body": {
+                                "list": []
+                            }
+                        };
+                        break;
+                    }
+
+                    default: {
+                        jsonFile = util.getErrorJson(trcode, "설정된 전문요청 서버 정보가 없습니다.");
+                    }
+                }
 
                 res
                     .set("Content-Type", "application/json;charset=UTF-8")
