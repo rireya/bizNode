@@ -15,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 /** bizNode Server Setting */
 const config = require("./biznode.config");
+const bizmob2 = require("./routes/bizMob2");
 const bizmob3 = require("./routes/bizMob3");
 const util = require("./routes/util");
 
@@ -22,9 +23,19 @@ const port = config.port;
 const configList = config.configList;
 
 configList.map((config) => {
-    bizmob3.setting(app, config);
+    switch (config.version) {
+        case "3": { // bizMOB 3.x
+            bizmob3.setting(app, config);
+            debug(`Setting on bizMOB 3.0 ${util.getLocalIP()}:${port}/${config.context}`);
+            break;
+        }
 
-    debug(`Setting on ${util.getLocalIP()}:${port}/${config.context}`);
+        case "2": { // bizMOB 2.5
+            bizmob2.setting(app, config);
+            debug(`Setting on bizMOB 2.5 ${util.getLocalIP()}:${port}/${config.context}`);
+            break;
+        }
+    }
 });
 /***************************/
 

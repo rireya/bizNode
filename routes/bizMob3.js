@@ -7,7 +7,7 @@ exports.setting = (app, { context, dirname, option }) => {
     const debug = require("debug")(`bizNode:${context}`);
     const util = require("./util");
 
-    const dirPath = path.join(`${__dirname}\\..\\..\\`, dirname);
+    const dirPath = dirname.indexOf(":/") !== -1 ? dirname : path.join(`${__dirname}\\..\\..\\`, dirname);
     const contentPath = path.join(dirPath, "WebContent");
     const emulatorPath = path.join(contentPath, option.emulator || "webemulator/html/emulator.html");
     const contextPath = `/${context}`;
@@ -17,7 +17,7 @@ exports.setting = (app, { context, dirname, option }) => {
         const reqPath = req.path;
         const type = reqPath.split(".").pop();
         const traceLog = `${util.getLocalDate()} | ${util.getRequestIP(req).padEnd(15, " ")} | ${util.getLocalIP().padEnd(15, " ")} | ${req.method} ${req.path}`;
-        
+
         // HTML
         if (type === "html") {
             debug(traceLog);
@@ -78,7 +78,7 @@ exports.setting = (app, { context, dirname, option }) => {
                 }
                 else {
                     const logMsg = `Not found: ${filePath}`;
-    
+
                     debug(logMsg);
                     res.status(404).send(logMsg);
                 }
@@ -117,7 +117,7 @@ exports.setting = (app, { context, dirname, option }) => {
             if (serverUrl) {
                 const requestUrl = `${serverUrl}/${trcode}`;
                 const requestData = qs.stringify({ message: JSON.stringify(message) });
-                
+
                 request
                     .post(requestUrl, requestData, {
                         headers: {
@@ -195,12 +195,12 @@ exports.setting = (app, { context, dirname, option }) => {
         }
         else {
             const serverUrl = option.server || "";
-    
+
             // 전문요청 서버를 지정한 경우에만 전송
             if (serverUrl) {
                 const requestUrl = `${serverUrl}/${trcode}`;
                 const requestData = qs.stringify({ message: JSON.stringify(message) });
-                
+
                 // TODO 롯데칠성 암호화통신 ZZ0008을 통과하지 못하여 다른 프로젝트로 테스트 필요
                 request
                     .post(requestUrl, requestData, {
@@ -222,7 +222,7 @@ exports.setting = (app, { context, dirname, option }) => {
             }
             else {
                 const jsonFile = util.getErrorJson(trcode, "설정된 전문요청 서버 정보가 없습니다.");
-    
+
                 res
                     .set("Content-Type", "application/json;charset=UTF-8")
                     .send(JSON.stringify(jsonFile));
