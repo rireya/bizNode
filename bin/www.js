@@ -4,7 +4,7 @@ const http = require("http");
 
 const port = ((val) => {
     const port = parseInt(val, 10);
-    
+
     if (isNaN(port)) {
         return val;
     }
@@ -54,6 +54,6 @@ server.on("listening", () => {
         ? "Pipe " + addr
         : "Port " + addr.port;
 
-    debug(`Listening on ${bind} Server`);
+    debug("Listening on bizNode Server");
     debug("===============================================================");
 });
