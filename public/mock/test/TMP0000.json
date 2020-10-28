@@ -1,7 +1,5 @@
 {
     "header" : {
-        "admin_yn" : "Y",
-        "emp_id" : "20104556",
         "error_code" : "",
         "error_text" : "",
         "info_text" : "",
@@ -12,11 +10,9 @@
         "result" : true,
         "system_from_time" : "",
         "system_to_time" : "",
-        "trcode" : "SMT0024"
+        "trcode" : "TMP0000"
     },
     "body" : {
-        "autoLoginFlag" : "N",
-        "backgroundUrl" : "",
-        "backImgFileNm" : ""
+        "foo" : "foo"
     }
 }

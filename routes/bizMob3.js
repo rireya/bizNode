@@ -89,9 +89,11 @@ exports.setting = (app, { context, dirname, option }) => {
     /**
      * 에뮬레이터에서 요청한 전문 라우터
      */
-    app.get(`${contextPath}/:trcode`, (req, res) => {
-        const trcode = req.params.trcode;
-        const message = JSON.parse(req.query.message);
+    app.get(`${contextPath}/:trcode`, (req, res, next) => {
+        const message = JSON.parse(req.query.message || "{}");
+        const trcode = req.params.trcode === "LOGIN.json"
+            ? message.body.legacy_trcode + ".json"
+            : req.params.trcode;
         const callback = req.query.callback;
 
         // 테스트 코드일 경우 Mock 데이터 전달
@@ -201,7 +203,7 @@ exports.setting = (app, { context, dirname, option }) => {
                 const requestUrl = `${serverUrl}/${trcode}`;
                 const requestData = qs.stringify({ message: JSON.stringify(message) });
 
-                // TODO 롯데칠성 암호화통신 ZZ0008을 통과하지 못하여 다른 프로젝트로 테스트 필요
+                // TODO 암호화통신 ZZ0008을 통과하지 못하여 다른 프로젝트로 테스트 필요
                 request
                     .post(requestUrl, requestData, {
                         headers: {

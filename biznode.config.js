@@ -2,12 +2,34 @@ module.exports = {
     /**
      * Open할 포트 번호
      */
-    "port": 3000,
+    "port": 8080,
 
     /**
      * Local Web 서버 Open 정보
      */
     "configList": [{
+        /**
+         * bizMOB 3.0 정보
+         */
+        "version": "3", // bizMOB Client 버전 정보 ("3")
+        "context": "test",
+        "dirname": "/testFolder", // 역슬래시는 슬래시 변경 (Ex. /testFolder, C:/workspace/testFolder)
+        "option": {
+            /**
+             * 전문요청 서버 정보
+             * 입력시 Client에서 전달받은 전문 요청을 바이패스 해서 Client에 Response 전달
+             *   Ex. http://10.6.9.173:8080/test.server
+             */
+            "server": "",
+
+            /**
+             * 기타 설정 정보
+             * emulator.html 경로가 기본값과 다를경우 셋팅 (경로는 /WebContent 이후 경로작성)
+             *   Ex. webemulator/html/emulator.html
+             */
+            "emulator": "",
+        }
+    }, {
         /**
          * bizMOB 2.5 정보
          */
@@ -22,26 +44,6 @@ module.exports = {
             "real": "https://127.0.0.1:8090/bizNode",
             "dev": "https://127.0.0.1:8090/bizNode",
             "sample": "https://127.0.0.1:8090/bizNode"
-        }
-    }, {
-        /**
-         * bizMOB 3.0 정보
-         */
-        "version": "3", // bizMOB Client 버전 정보 ("3")
-        "context": "test3",
-        "dirname": "/testFolder3", // 역슬래시는 슬래시 변경 (Ex. /testFolder, C:/workspace/testFolder)
-        "option": {
-            /**
-             * 전문요청 서버 정보
-             */
-            "server": "",
-
-            /**
-             * 기타 설정 정보
-             * emulator.html 경로가 기본값과 다를경우 셋팅 (경로는 /WebContent 이후 경로작성)
-             *   Ex. webemulator/html/emulator.html
-             */
-            "emulator": "",
         }
     }]
 };

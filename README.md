@@ -18,11 +18,13 @@
 
 ## Mock 서버 기능
 
-1. ```public/mock``` 경로에 ```biznode.config.js```에 설정한 dirname과 동일한 폴더명 생성
+1. ```public/mock``` 경로에 ```biznode.config.js```에 설정한 context와 동일한 폴더명 생성
 
-2. 생성한 폴더내부에 테스트용 JSON을 trcode 명칭으로 생성 (Ex. SMT0024.json)
+2. 생성한 폴더내부에 테스트용 JSON을 trcode 명칭으로 생성 (Ex. TMP0000.json)
 
 3. Client에서 요청서버 정보를 자신의 bizNode 서버정보로 변경
+
+4. Client에서 JSON 데이터 요청시 앞에 ```test-``` 붙이기 (Ex. _sTrcode: "TMP0000" -> _sTrcode: "test-TMP0000")
 
 ## 파일 공유 서버 기능
 
